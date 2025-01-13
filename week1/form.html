@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Conference registration form</title>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center">
+      <form
+        style="
+          height: auto;
+          width: 540px;
+          border: 1px solid black;
+          padding-inline: 25px;
+        "
+        method="get"
+        action="http://127.0.0.1:5500/week1/formdata.html"
+        id="form"
+      >
+        <p style="font-size: larger; font-weight: 600">
+          CONFERENCE REGISTRATION FORM
+        </p>
+        <div style="display: flex; flex-direction: column">
+          <p style="font-size: larger; font-weight: 600">Enter details</p>
+          <input
+            placeholder="Enter your full name"
+            required
+            style="margin: 2px"
+            id="name"
+            name="name"
+          />
+          <input
+            placeholder="example@domain.com"
+            type="email"
+            required
+            style="margin: 2px"
+            id="email"
+            name="email"
+          />
+          <input
+            required
+            type="number"
+            id="phone number"
+            placeholder="Enter Phone number"
+            min="1000000000"
+            max="9999999999"
+            style="margin: 2px"
+            name="phone_number"
+          />
+          <input
+            id="age"
+            min="18"
+            max="60"
+            type="number"
+            placeholder="Enter age"
+            style="margin: 2px"
+            name="age"
+          />
+          <div>
+            <p style="font-weight: 600">Choose up to 2 events</p>
+            <label for="events">Events</label>
+            <select name="events" id="events">
+              <option value="Coding contest">Coding contest</option>
+              <option value="Hackathon">Hackathon</option>
+              <option value="Paper Presentation">Paper Presentation</option>
+              <option value="Robotics Challange">Robotics Challange</option>
+              <option value="Keynote Session">Keynote Session</option>
+            </select>
+            <p>
+              Hold Ctrl (Windows) or Command (Mac) to select multiple options.
+            </p>
+          </div>
+          <div>
+            <p style="font-weight: 600">Select accomodation type</p>
+            <input
+              type="radio"
+              value="Hostel"
+              name="accomodation_type"
+              required
+            />
+            <label>Hostel</label>
+            <input
+              type="radio"
+              value="Hotel"
+              name="accomodation_type"
+              required
+            />
+            <label>Hotel</label>
+            <input
+              type="radio"
+              value="None"
+              name="accomodation_type"
+              required
+            />
+            <label>None</label>
+          </div>
+          <div>
+            <p style="font-weight: 600">Select deitary preference</p>
+            <input
+              type="checkbox"
+              value="Vegetarian"
+              name="deitary_preference"
+            />
+            <label>Vegetarian</label>
+            <input
+              type="checkbox"
+              value="Non-Vegetarian"
+              name="deitary_preference"
+            />
+            <label>Non-Vegetarian</label>
+            <input type="checkbox" value="Vegan" name="deitary_preference" />
+            <label>Vegan</label>
+            <input
+              type="checkbox"
+              value="Other"
+              id="other"
+              name="deitary_preference"
+            />
+            <label>Other (Specify Below)</label> <br />
+            <input
+              type="text"
+              id="otherInput"
+              disabled
+              name="deitary_preference"
+              style="width: 530px; margin-top: 7px"
+            />
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <p style="font-weight: 600">Upload Documents</p>
+            <input type="file" accept="image/*" name="student_id" />
+            <p style="font-weight: 600">Comments/Requests</p>
+            <textarea
+              id="comments/requests"
+              name="comments_requests"
+              maxlength="200"
+              style="height: 40px"
+            ></textarea>
+          </div>
+          <div style="margin-top: 10px">
+            <input type="checkbox" required />
+            <label>I agree to the <b>terms and conditions</b> </label>
+          </div>
+          <div
+            style="
+              margin: 10px;
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 15px;
+            "
+          >
+            <button
+              style="
+                width: 100px;
+                padding: 10px;
+                font-size: larger;
+                margin-right: 10px;
+                background-color: red;
+                color: white;
+              "
+              type="reset"
+            >
+              Reset
+            </button>
+            <button
+              style="
+                width: 100px;
+                padding: 10px;
+                font-size: larger;
+                background-color: green;
+                color: white;
+              "
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script>
+      const otherCheckbox = document.getElementById("other");
+      const otherInput = document.getElementById("otherInput");
+
+      otherCheckbox.addEventListener("change", () => {
+        otherInput.disabled = !otherCheckbox.checked;
+        if (!otherCheckbox.checked) {
+          otherInput.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

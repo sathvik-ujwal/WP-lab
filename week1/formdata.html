@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form data</title>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center">
+      <div style="display: flex; flex-direction: column">
+        <p>FORM DATA</p>
+        <div id="output"></div>
+      </div>
+    </div>
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      const name = urlParams.get("name");
+      const email = urlParams.get("email");
+      const number = urlParams.get("phone_number");
+      const age = urlParams.get("age");
+      const events = urlParams.get("events");
+      const accommodation = urlParams.get("accomodation_type");
+      const dietaryPreferences = urlParams.getAll("deitary_preference");
+      const student_id = urlParams.get("student_id");
+      const comments_requests = urlParams.get("comments_requests");
+
+      const output = `
+        <p>Name: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Phone Number: ${number}</p>
+        <p>Age: ${age}</p>
+        <p>Event: ${events}</p>
+        <p>Accommodation Type: ${accommodation}</p>
+        <p>Dietary Preferences: ${dietaryPreferences.join(", ")}</p>
+        <p>Student ID: ${student_id}</p>
+        <p>Comments/Requests: ${comments_requests}</p>
+      `;
+
+      document.getElementById("output").innerHTML = output;
+    </script>
+  </body>
+</html>
