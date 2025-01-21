@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  font-weight: 600;
+  text-align: center;
+  font-size: large;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-div label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.input-div input[type="text"],
+.input-div input[type="radio"],
+.input-div input[type="checkbox"] {
+  font-size: 14px;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.table-section {
+  margin-top: 20px;
+}
+
+.table-section p {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: center;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reset-button,
+.submit-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button {
+  background-color: #d9534f;
+  color: white;
+}
+
+.reset-button:hover {
+  background-color: #c9302c;
+}
+
+.submit-button {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #4cae4c;
+}
