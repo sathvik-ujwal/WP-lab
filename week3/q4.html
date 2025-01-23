@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>COLOR CHANGER</title>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center; flex-direction: row">
+      <div style="width: 400px; height: 400">
+        <div style="width: auto">
+          <div>
+            <input
+              type="radio"
+              value="red"
+              id="Red"
+              name="color"
+              onclick="changeColor(this.value)"
+            />
+            <label>Red</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="green"
+              id="Green"
+              name="color"
+              onclick="changeColor(this.value)"
+            />
+            <label>Green</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="blue"
+              id="Blue"
+              name="color"
+              onclick="changeColor(this.value)"
+            />
+            <label>Blue</label>
+          </div>
+        </div>
+        <div
+          style="background-color: red; width: 350px; height: 200px"
+          id="colorr"
+        ></div>
+      </div>
+    </div>
+    <script>
+      function changeColor(color) {
+        document.getElementById("colorr").style.backgroundColor = `${color}`;
+        console.log(color);
+      }
+    </script>
+  </body>
+</html>

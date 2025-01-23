@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Clock & Wishes</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: #f0f8ff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #333;
+      }
+      .clock {
+        font-size: 48px;
+        background-color: #3f8bca;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .message {
+        font-size: 24px;
+        margin: 10px;
+      }
+      .container {
+        text-align: center;
+      }
+      button {
+        background-color: #3f8bca;
+        border-radius: 10px;
+        padding: 10px 40px;
+        color: white;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to Dynamic Clock</h1>
+      <div id="greetingMessage" class="message"></div>
+      <div id="clock" class="clock"></div>
+      <button>Greet</button>
+    </div>
+
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        const timeString = `${hours}:${minutes < 10 ? "0" : ""}${minutes}:${
+          seconds < 10 ? "0" : ""
+        }${seconds}`;
+
+        document.getElementById("clock").textContent = timeString;
+
+        let greetingMessage = "";
+        if (hours >= 5 && hours < 12) {
+          greetingMessage = "Good Morning!";
+        } else if (hours >= 12 && hours < 17) {
+          greetingMessage = "Good Afternoon!";
+        } else if (hours >= 17 && hours < 21) {
+          greetingMessage = "Good Evening!";
+        } else {
+          greetingMessage = "Good Night!";
+        }
+
+        document.getElementById("greetingMessage").textContent =
+          greetingMessage;
+
+        alert(greetingMessage);
+      }
+
+      setInterval(updateClock, 1000);
+
+      updateClock();
+    </script>
+  </body>
+</html>
