@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electronics Bill</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .select_brand,
+      .select_device,
+      .quantity {
+        margin-bottom: 20px;
+      }
+      select,
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .select_device input[type="checkbox"] {
+        margin-right: 10px;
+      }
+      button {
+        width: 100%;
+        padding: 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Electronics Bill Generator</h1>
+      <div class="select_brand">
+        <label for="brand">Select Brand:</label>
+        <select id="brand">
+          <option value="hp">HP</option>
+          <option value="nokia">Nokia</option>
+          <option value="samsung">Samsung</option>
+          <option value="motorola">Motorola</option>
+          <option value="apple">Apple</option>
+        </select>
+      </div>
+
+      <div class="select_device">
+        <label>Select Device:</label>
+        <input type="checkbox" /> Mobile <input type="checkbox" /> Laptop
+      </div>
+
+      <div class="quantity">
+        <label for="quantity">Enter Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1" />
+      </div>
+
+      <button id="bill">Produce Bill</button>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#bill").click(function () {
+          var brand = $("#brand").val();
+          var price = 0;
+
+          switch (brand) {
+            case "hp":
+              price = 500;
+              break;
+            case "nokia":
+              price = 200;
+              break;
+            case "samsung":
+              price = 300;
+              break;
+            case "motorola":
+              price = 250;
+              break;
+            case "apple":
+              price = 1000;
+              break;
+          }
+
+          if ($('.select_device input[type="checkbox"]:eq(0)').is(":checked"))
+            price += 100; // Mobile
+          if ($('.select_device input[type="checkbox"]:eq(1)').is(":checked"))
+            price += 700; // Laptop
+
+          var quantity = $("#quantity").val();
+          var totalAmount = price * quantity;
+
+          alert("Total Amount: $" + totalAmount);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>q3</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: row; justify-content: center">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          justify-content: end;
+          padding: 40px;
+          border: black 1px solid;
+        "
+      >
+        <div style="display: flex; flex-direction: column; margin: 6px">
+          <label for="bg">Choose a background-color</label>
+          <select name="bg" id="bg">
+            <option value="red">red</option>
+            <option value="yellow">yellow</option>
+            <option value="green">green</option>
+            <option value="blue">blue</option>
+          </select>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 6px">
+          <label for="font">Choose a font</label>
+          <select name="font" id="font">
+            <option value="Verdana">Verdana</option>
+            <option value="Geneva">Geneva</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="sans-serif">sans-serif</option>
+          </select>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 6px">
+          <label for="font-size">Specify a numeric font size</label>
+          <input type="number" id="font-size" min="10" max="100" />
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 6px">
+          <label for="border">Choose a border style</label>
+          <div>
+            <input
+              type="radio"
+              value="None"
+              name="border"
+              id="border-none"
+              checked
+            />
+            <label for="border-none">None</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="Double"
+              name="border"
+              id="border-double"
+            />
+            <label for="border-double">Double</label>
+          </div>
+          <div>
+            <input type="radio" value="Solid" name="border" id="border-solid" />
+            <label for="border-solid">Solid</label>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row; margin: 6px">
+          <input type="checkbox" id="add-picture" />
+          <label for="add-picture">Add the Default Picture</label>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 6px">
+          <label for="greeting-text">Enter the greeting text below</label>
+          <textarea id="greeting-text" rows="5"></textarea>
+        </div>
+
+        <button id="update-btn" style="padding: 2px; margin: 6px">
+          Update
+        </button>
+      </div>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          border: 1px black solid;
+        "
+        id="card"
+      >
+        <div>
+          <p id="greeting" style="padding: 20px">
+            HAPPY BIRTHDAY AND MANY MORE
+          </p>
+          <img
+            id="greeting-img"
+            src="https://i0.wp.com/mathwithbaddrawings.com/wp-content/uploads/2013/05/1-recipes.jpg"
+            alt="cake"
+            width="300px"
+            height="200px"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        const defaultData = {
+          greeting: "HAPPY BIRTHDAY AND MANY MORE",
+          backGroundColor: "White",
+          borderStyle: "None",
+          fontStyle: "20px",
+          fontFamily: "Verdana",
+          picture: true,
+        };
+
+        function applyChanges() {
+          const backgroundColor = $("#bg").val();
+          const fontSize = $("#font-size").val() || 20;
+          const fontFamily = $("#font").val();
+          const borderStyle = $("input[name='border']:checked").val();
+          const showPicture = $("#add-picture").is(":checked");
+          const greetingText =
+            $("#greeting-text").val() || defaultData.greeting;
+
+          $("#greeting").text(greetingText);
+          $("#card").css({ "background-color": backgroundColor });
+          $("#greeting").css({
+            "background-color": backgroundColor,
+            "font-size": fontSize + "px",
+            "font-family": fontFamily,
+            border: borderStyle === "None" ? "none" : borderStyle,
+          });
+
+          if (showPicture) {
+            $("#greeting-img").show();
+          } else {
+            $("#greeting-img").hide();
+          }
+        }
+
+        $("#update-btn").click(function () {
+          applyChanges();
+        });
+
+        applyChanges();
+      });
+    </script>
+  </body>
+</html>
