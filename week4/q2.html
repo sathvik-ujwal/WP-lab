@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      #calc {
+        background-color: rgb(105, 85, 85);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #display_area input {
+        width: 100%;
+        padding: 10px;
+        font-size: 20px;
+        text-align: right;
+      }
+
+      #numbers-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .grid-item {
+        background-color: #f1f1f1;
+        padding: 20px;
+        font-size: 20px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .grid-item:hover {
+        background-color: #ddd;
+      }
+
+      #operators-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .operator {
+        background-color: #f1f1f1;
+        padding: 20px;
+        font-size: 20px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .operator:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: row; justify-content: center">
+      <div id="calc">
+        <p>Calculator</p>
+        <div id="display_area">
+          <input id="display" type="text" disabled />
+        </div>
+        <div style="display: flex; flex-direction: row">
+          <div
+            id="numbers-grid"
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 20px;
+              padding: 20px;
+            "
+          ></div>
+          <div id="operators-list"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
+      const operators = ["+", "-", "*", "/", "^"];
+      const numberGrid = $("#numbers-grid");
+      const operatorList = $("#operators-list");
+      const display = $("#display");
+
+      numbers.forEach((number) => {
+        const gridItem = $("<div>").addClass("grid-item").text(number);
+        gridItem.click(function () {
+          display.val(display.val() + number);
+        });
+        numberGrid.append(gridItem);
+      });
+
+      operators.forEach((operator) => {
+        const operatorItem = $("<div>")
+          .addClass("operator")
+          .text(operator)
+          .click(function () {
+            display.val(display.val() + " " + operator + " ");
+          });
+        operatorList.append(operatorItem);
+      });
+
+      const equalsButton = $("<div>")
+        .addClass("operator")
+        .text("=")
+        .click(function () {
+          const expression = display.val();
+          try {
+            const result = eval(expression.replace("^", "**"));
+            display.val(result);
+          } catch (error) {
+            display.val("Error");
+          }
+        });
+      operatorList.append(equalsButton);
+
+      const clearButton = $("<div>")
+        .addClass("operator")
+        .text("C")
+        .click(function () {
+          display.val("");
+        });
+      operatorList.append(clearButton);
+    </script>
+  </body>
+</html>

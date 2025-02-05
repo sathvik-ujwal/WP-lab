@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ONLINE QUIZ</title>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: row; justify-content: center">
+      <div
+        style="
+          width: 500px;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: baseline;
+        "
+      >
+        <div style="font-size: xx-large; padding-bottom: 7px">
+          Answer these questions to win $100 (NOT SCAM)
+        </div>
+
+        <div style="padding-bottom: 7px" id="q1d">
+          <div style="font-size: large" id="q1">
+            1.There are 32 legs and 10 heads in a farm. How many of these are
+            donkeys and how many are hens?
+          </div>
+
+          <div>
+            <div>
+              <input
+                type="radio"
+                name="q1"
+                id="option1"
+                onclick="onOptionChoose('q1', 'option1')"
+              />
+              <label for="option1">5 Donkeys and 5 Hens</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q1"
+                id="option2"
+                onclick="onOptionChoose('q1', 'option2')"
+              />
+              <label for="option2">6 Donkeys and 4 Hens</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q1"
+                id="option3"
+                onclick="onOptionChoose('q1', 'option3')"
+              />
+              <label for="option3">7 Donkeys and 3 Hens</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q1"
+                id="option4"
+                onclick="onOptionChoose('q1', 'option4')"
+              />
+              <label for="option4">8 Donkeys and 2 Hens</label>
+            </div>
+          </div>
+        </div>
+        <div style="padding-bottom: 7px" id="q2d">
+          <div style="font-size: large" id="q2">2.whats 1-1?</div>
+
+          <div>
+            <div>
+              <input
+                type="radio"
+                name="q2"
+                id="option1"
+                onclick="onOptionChoose('q2', 'option1')"
+              />
+              <label for="option1">H</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q2"
+                id="option2"
+                onclick="onOptionChoose('q2', 'option2')"
+              />
+              <label for="option2">0</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q2"
+                id="option3"
+                onclick="onOptionChoose('q2', 'option3')"
+              />
+              <label for="option3">Fence</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q2"
+                id="option4"
+                onclick="onOptionChoose('q2', 'option4')"
+              />
+              <label for="option4">one minue one</label>
+            </div>
+          </div>
+        </div>
+        <div style="padding-bottom: 7px" id="q3d">
+          <div style="font-size: large" id="q3">
+            3.There are 3 monsters with initial hp 5, 3, 6.Thier hp increases by
+            8 each day. Whats the minimum attack power need to kill all the
+            monsters. NOTE:attack should be greater or equal to hp to kill the
+            monsters
+          </div>
+
+          <div>
+            <div>
+              <input
+                type="radio"
+                name="q3"
+                id="option1"
+                onclick="onOptionChoose('q3', 'option1')"
+              />
+              <label for="option1">13</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q3"
+                id="option2"
+                onclick="onOptionChoose('q3', 'option2')"
+              />
+              <label for="option2">39</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q3"
+                id="option3"
+                onclick="onOptionChoose('q3', 'option3')"
+              />
+              <label for="option3">20</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="q3"
+                id="option4"
+                onclick="onOptionChoose('q3', 'option4')"
+              />
+              <label for="option4">10</label>
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+          "
+        >
+          <button style="width: 80px; padding: 5px 10px" id="submit">
+            Submit
+          </button>
+          <p id="score" style="margin: 0">Score: 0</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      var answers = {
+        q1: { correct: "option2", choosen: null },
+        q2: { correct: "option2", choosen: null },
+        q3: { correct: "option5", choosen: null },
+      };
+      function onOptionChoose(quesiton, option) {
+        answers[quesiton].choosen = option;
+      }
+
+      var submitButton = document.getElementById("submit");
+
+      submitButton.addEventListener("click", function () {
+        for (let question in answers) {
+          if (answers[question].choosen === null) {
+            alert("Please answer all questions!");
+            return;
+          }
+        }
+
+        let score = 0;
+        for (let question in answers) {
+          let questionElement = document.getElementById(question + "d");
+
+          if (answers[question].choosen === answers[question].correct) {
+            score++;
+            questionElement.style.backgroundColor = "green";
+          } else {
+            questionElement.style.backgroundColor = "red";
+          }
+        }
+        console.log(score);
+        console.log(answers);
+
+        document.getElementById("score").innerText = "Score: " + score;
+      });
+    </script>
+  </body>
+</html>
