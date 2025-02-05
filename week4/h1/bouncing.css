@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 500px;
+  position: relative;
+  border: 1px solid #ddd;
+}
+
+.ball {
+  position: absolute;
+  bottom: 0;
+}
