@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 50%;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+
+      label {
+        font-size: 14px;
+        margin-bottom: 8px;
+        display: block;
+        color: #555;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      input[type="button"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      input[type="button"]:hover {
+        background-color: #45a049;
+      }
+
+      #result {
+        margin-top: 20px;
+      }
+
+      .label {
+        font-weight: bold;
+      }
+
+      .output {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-top: 10px;
+        min-height: 100px;
+      }
+
+      #chartContainer {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      canvas {
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Enter Student Details</h2>
+      <form id="studentForm">
+        <label for="name">Student Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter student name"
+          required
+        />
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" required />
+
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          placeholder="Enter address"
+          rows="4"
+          required
+        ></textarea>
+
+        <label for="contact">Contact Number</label>
+        <input
+          type="text"
+          id="contact"
+          placeholder="Enter contact number"
+          required
+        />
+
+        <label for="email">Email ID</label>
+        <input type="email" id="email" placeholder="Enter email ID" required />
+
+        <label for="english">English Marks</label>
+        <input
+          type="number"
+          id="english"
+          placeholder="Enter marks in English"
+          min="0"
+          max="100"
+          required
+        />
+
+        <label for="physics">Physics Marks</label>
+        <input
+          type="number"
+          id="physics"
+          placeholder="Enter marks in Physics"
+          min="0"
+          max="100"
+          required
+        />
+
+        <label for="chemistry">Chemistry Marks</label>
+        <input
+          type="number"
+          id="chemistry"
+          placeholder="Enter marks in Chemistry"
+          min="0"
+          max="100"
+          required
+        />
+
+        <input type="button" value="Submit" onclick="submitForm()" />
+      </form>
+
+      <div id="result">
+        <label class="label">Student Details:</label>
+        <div id="detailsOutput" class="output"></div>
+
+        <label class="label">Total Percentage:</label>
+        <div id="percentageOutput" class="output"></div>
+      </div>
+
+      <div id="chartContainer">
+        <canvas id="percentageChart" width="200" height="200"></canvas>
+      </div>
+    </div>
+
+    <script>
+      function submitForm() {
+        const name = document.getElementById("name").value;
+        const dob = document.getElementById("dob").value;
+        const address = document.getElementById("address").value;
+        const contact = document.getElementById("contact").value;
+        const email = document.getElementById("email").value;
+        const english = parseInt(document.getElementById("english").value);
+        const physics = parseInt(document.getElementById("physics").value);
+        const chemistry = parseInt(document.getElementById("chemistry").value);
+
+        const totalMarks = english + physics + chemistry;
+        const totalSubjects = 3;
+        const percentage = (totalMarks / (totalSubjects * 100)) * 100;
+
+        const detailsOutput = `
+            Name: ${name}<br>
+            Date of Birth: ${dob}<br>
+            Address: ${address}<br>
+            Contact: ${contact}<br>
+            Email: ${email}<br>
+            English Marks: ${english}<br>
+            Physics Marks: ${physics}<br>
+            Chemistry Marks: ${chemistry}<br>
+        `;
+        document.getElementById("detailsOutput").innerHTML = detailsOutput;
+
+        document.getElementById(
+          "percentageOutput"
+        ).innerHTML = `Percentage: ${percentage.toFixed(2)}%`;
+
+        drawPieChart(percentage);
+      }
+
+      function drawPieChart(percentage) {
+        const ctx = document.getElementById("percentageChart").getContext("2d");
+
+        let color;
+        if (percentage > 80) {
+          color = "#4CAF50";
+        } else if (percentage <= 80 && percentage > 40) {
+          color = "#FFEB3B";
+        } else {
+          color = "#F44336";
+        }
+
+        const data = {
+          labels: ["Percentage"],
+          datasets: [
+            {
+              data: [percentage, 100 - percentage],
+              backgroundColor: [color, "#e0e0e0"],
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        const options = {
+          responsive: true,
+          cutoutPercentage: 70,
+          animation: {
+            animateRotate: true,
+            animateScale: true,
+          },
+        };
+
+        if (window.chart) {
+          window.chart.destroy();
+        }
+
+        window.chart = new Chart(ctx, {
+          type: "pie",
+          data: data,
+          options: options,
+        });
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>
