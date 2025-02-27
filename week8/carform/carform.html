@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Form</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #ff61a6, #5c6bc0);
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        color: white;
+      }
+
+      .container {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        width: 400px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .container:hover {
+        transform: scale(1.05);
+      }
+
+      h1 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #ff61a6;
+        margin-bottom: 30px;
+        font-weight: bold;
+      }
+
+      label {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        display: block;
+        color: #fff;
+      }
+
+      select,
+      input {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #ff61a6, #ff4d9f);
+        color: white;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      select:focus,
+      input:focus {
+        background: #5c6bc0;
+        color: #fff;
+      }
+
+      button {
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        color: white;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #0072ff, #00c6ff);
+      }
+
+      .message {
+        margin-top: 20px;
+        font-size: 1.1rem;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Choose Your Car</h1>
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Submit</button>
+      </form>
+      <div class="message"></div>
+    </div>
+  </body>
+</html>

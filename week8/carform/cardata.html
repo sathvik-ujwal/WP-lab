@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Data</title>
+    <style>
+      body {
+        background: linear-gradient(45deg, #00c6ff, #0072ff);
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        color: white;
+      }
+
+      .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 50px;
+        border-radius: 15px;
+        text-align: center;
+        width: 400px;
+        box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #ff61a6;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-shadow: 0px 0px 10px #ff61a6, 0px 0px 20px #ff61a6;
+      }
+
+      .data {
+        font-size: 1.5rem;
+        margin: 20px;
+        color: #ff61a6;
+        text-shadow: 0px 0px 15px #ff61a6, 0px 0px 30px #ff61a6;
+      }
+
+      .data span {
+        color: #fff;
+        font-size: 1.8rem;
+        text-shadow: 0px 0px 10px #00c6ff, 0px 0px 15px #00c6ff;
+      }
+
+      .back-button {
+        margin-top: 40px;
+        padding: 15px 30px;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        border: none;
+        font-size: 1.2rem;
+        color: white;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+      }
+
+      .back-button:hover {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #0072ff, #00c6ff);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Your Car Selection</h1>
+      <div class="data">
+        <p>Manufacturer: <span>{{ manufacturer }}</span></p>
+        <p>Model: <span>{{ model }}</span></p>
+      </div>
+      <a href="/carform/form" class="back-button">Back to Form</a>
+    </div>
+  </body>
+</html>

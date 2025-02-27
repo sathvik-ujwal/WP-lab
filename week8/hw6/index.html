@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message Formatter</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #e1f5fe, #f0f8ff);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        padding: 40px;
+        width: 80%; /* Wider container */
+        max-width: 1100px; /* Set max width */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #4caf50;
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 1.2rem;
+        color: #333;
+      }
+
+      /* Layout for the inputs */
+      .input-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .input-container input,
+      .input-container textarea {
+        width: 48%; /* Adjust width to fit in the same row */
+        padding: 12px;
+        margin: 10px 0;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      .input-container textarea {
+        width: 100%; /* Full width for message */
+      }
+
+      .input-container label {
+        width: 100%; /* Ensure label spans full width */
+      }
+
+      /* Radio buttons and checkboxes in the same row */
+      .input-container .format-options {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+
+      .input-container .format-options input {
+        margin-right: 10px;
+      }
+
+      /* Button container in one row */
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      button {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        flex: 1;
+        margin: 0 5px;
+      }
+
+      button:hover {
+        background: #45a049;
+      }
+
+      .exit-button {
+        background: #f44336;
+      }
+
+      .exit-button:hover {
+        background: #e53935;
+      }
+
+      .message-box {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        padding: 15px;
+        text-align: center;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        background-color: #f1f8e9;
+        min-height: 50px;
+        transition: all 0.3s;
+        width: 100%;
+      }
+
+      .message-box span {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Format Your Message</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="input-container">
+          <div style="width: 48%">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div style="width: 100%">
+            <label for="message">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              rows="4"
+              placeholder="Enter your message"
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="input-container format-options">
+          <div>
+            <input type="radio" name="bold" id="bold" />
+            <label for="bold">Bold</label>
+            <input type="radio" name="italic" id="italic" />
+            <label for="italic">Italic</label>
+            <input type="radio" name="underline" id="underline" />
+            <label for="underline">Underline</label>
+          </div>
+          <div>
+            <input type="checkbox" name="red" id="red" />
+            <label for="red">Red</label>
+            <input type="checkbox" name="blue" id="blue" />
+            <label for="blue">Blue</label>
+            <input type="checkbox" name="green" id="green" />
+            <label for="green">Green</label>
+          </div>
+        </div>
+        <div class="button-container">
+          <button type="submit">Display Message</button>
+          <button type="reset">Clear</button>
+        </div>
+      </form>
+
+      {% if label_text %}
+      <div
+        class="message-box"
+        style="font-weight: {{ font_weight }}; font-style: {{ font_style }}; text-decoration: {{ text_decoration }}; color: {{ text_color }};"
+      >
+        {{ label_text }}
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
